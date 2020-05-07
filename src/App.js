@@ -10,14 +10,28 @@ class App extends Component {
       { name: "Micheal", age: 55 }
     ]
   }
+
+  swithNameHandeler = () => {
+    // console.log('Was clicked');
+    // DONT DO THIS!! this.state.persons.age = this.state.persons.age +=1
+    this.setState({
+      persons: [
+        { name: "Freddie", age: this.state.persons[0].age += 1},
+        { name: "Jason", age: this.state.persons[0].age += 1 },
+        { name: "Micheal", age: this.state.persons[0].age += 1}
+      ]
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <h1>Hi I am the react app</h1>
         <p>This is under teh main</p>
-        <button>Switch name</button>
+        <button onClick={this.swithNameHandeler} >Switch name</button>
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
         <Person name={this.state.persons[1].name} age={this.state.persons[1].age} />
+        <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
         <Person name="James" age= '48' > Added content child: hobbie </Person>
         <Person name="Jeremy" age= '15'  />
       </div>
