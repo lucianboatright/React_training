@@ -5,7 +5,7 @@ import Person from './Person/Person';
 const app = (props) => {
     const [ personsState, setPersonsState ] = useState({
       persons: [
-        { name: "Freddie", age: 30 },
+        { name: "Fred", age: 30 },
         { name: "Jason", age: 15 },
         { name: "Micheal", age: 55 }
       ],
@@ -19,12 +19,12 @@ const app = (props) => {
 
     console.log(personsState, otherState)
 
-    const swithNameHandeler = () => {
+    const swithNameHandeler = (newName) => {
       // console.log('Was clicked');
       // DONT DO THIS!! this.state.persons.age = this.state.persons.age +=1
       setPersonsState({
         persons: [
-          { name: "Freddie", age: personsState.persons[0].age += 1},
+          { name: newName, age: personsState.persons[0].age += 1},
           { name: "Jason", age: personsState.persons[1].age += 1 },
           { name: "Micheal", age: personsState.persons[2].age += 1}
         ]
@@ -34,7 +34,7 @@ const app = (props) => {
       <div className="App">
         <h1>Hi I am the react app</h1>
         <p>This is under teh main</p>
-        <button onClick={swithNameHandeler} >Switch name</button>
+        <button onClick={swithNameHandeler.bind(this, "Name of Button")} >Switch name</button>
         <Person 
           name={personsState.persons[0].name} 
           age={personsState.persons[0].age} />
@@ -44,7 +44,7 @@ const app = (props) => {
         <Person 
           name={personsState.persons[2].name} 
           age={personsState.persons[2].age} 
-          click={swithNameHandeler}> With additional Click </Person>
+          click={swithNameHandeler.bind(this, "Name of Click")}> With additional Click </Person>
         <Person name="James" age= '48' > Added content child: hobbie </Person>
         <Person name="Jeremy" age= '15'  />
       </div>
