@@ -14,6 +14,7 @@ const app = (props) => {
 
     // State slicking using two arguments on const [original, newstate(not required to use)]
     // now outside te perosnState is will carry over and not be lost onClick event
+    // Hooks are all about 'useState' functions(line 6) imported instead of component
     const [otherState, setOtherState] = useState('NEW STATEMENT');
 
     console.log(personsState, otherState)
@@ -34,9 +35,16 @@ const app = (props) => {
         <h1>Hi I am the react app</h1>
         <p>This is under teh main</p>
         <button onClick={swithNameHandeler} >Switch name</button>
-        <Person name={personsState.persons[0].name} age={personsState.persons[0].age} />
-        <Person name={personsState.persons[1].name} age={personsState.persons[1].age} />
-        <Person name={personsState.persons[2].name} age={personsState.persons[2].age} />
+        <Person 
+          name={personsState.persons[0].name} 
+          age={personsState.persons[0].age} />
+        <Person 
+          name={personsState.persons[1].name} 
+          age={personsState.persons[1].age} />
+        <Person 
+          name={personsState.persons[2].name} 
+          age={personsState.persons[2].age} 
+          click={swithNameHandeler}> With additional Click </Person>
         <Person name="James" age= '48' > Added content child: hobbie </Person>
         <Person name="Jeremy" age= '15'  />
       </div>
