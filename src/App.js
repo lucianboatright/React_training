@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import './Person/Person.css'
 import Person from './Person/Person';
 
 class App extends Component {
@@ -27,9 +28,9 @@ class App extends Component {
   nameChangedHandler = (event) => {
     this.setState( {
       persons: [
-        { name: 'Max', age: this.state.persons[0].age += 1},
-        { name: event.target.value, age: this.state.persons[1].age += 1},
-        { name: 'Stephanie', age: this.state.persons[2].age += 1 }
+        { name: 'Max', age: this.state.persons[0].age },
+        { name: event.target.value, age: this.state.persons[1].age },
+        { name: 'Stephanie', age: this.state.persons[2].age  }
       ]
     } )
   }
@@ -39,14 +40,14 @@ class App extends Component {
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
-        <button onClick={() => this.switchNameHandler('Maximilian!!')}>Switch Name</button>
+        <button onClick={() => this.switchNameHandler('On Swith Change')}>Switch Name</button>
         <Person 
           name={this.state.persons[0].name} 
           age={this.state.persons[0].age} />
         <Person 
           name={this.state.persons[1].name} 
           age={this.state.persons[1].age}
-          click={this.switchNameHandler.bind(this, 'Max!')}
+          click={this.switchNameHandler.bind(this, 'Change on line click')}
           changed={this.nameChangedHandler} >My Hobbies: Racing</Person>
         <Person 
           name={this.state.persons[2].name} 
