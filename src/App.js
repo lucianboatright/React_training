@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import './Person/Person.css'
 import Person from './Person/Person';
 
 class App extends Component {
@@ -10,7 +9,8 @@ class App extends Component {
       { name: 'Manu', age: 29 },
       { name: 'Stephanie', age: 26 }
     ],
-    otherState: 'some other value'
+    otherState: 'some other value',
+    showPersons: false
   }
 
   switchNameHandler = (newName) => {
@@ -35,23 +35,47 @@ class App extends Component {
     } )
   }
 
+  togglePersonsHandeler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({showPersons: !doesShow})
+  }
+
   render () {
+    
+    const style = {
+      backgroundColor: "white",
+      font: "inherit",
+      border: '2px solid blue',
+      padding: '8px',
+      boxShadow: '0 2px 3px #ccc',
+      cursor: 'pointer'
+    }; // values need to be in quote marks as it is in js
+
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
-        <button onClick={() => this.switchNameHandler('On Swith Change')}>Switch Name</button>
-        <Person 
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age} />
-        <Person 
-          name={this.state.persons[1].name} 
-          age={this.state.persons[1].age}
-          click={this.switchNameHandler.bind(this, 'Change on line click')}
-          changed={this.nameChangedHandler} >My Hobbies: Racing</Person>
-        <Person 
-          name={this.state.persons[2].name} 
-          age={this.state.persons[2].age} />
+        <button 
+        style={style}
+        onClick={this.togglePersonsHandeler}>Switch Name</button>
+         {/* use ternary statemnt, if state.shoepwersons ?(ture) do __ :(else) null // put componets in div which can be managed   */}
+        { 
+        this.state.showPersons ? 
+          <div > 
+          <Person 
+            name={this.state.persons[0].name} 
+            age={this.state.persons[0].age} />
+          <Person 
+            name={this.state.persons[1].name} 
+            age={this.state.persons[1].age}
+            click={this.switchNameHandler.bind(this, 'Change on line click')}
+            changed={this.nameChangedHandler} >My Hobbies: Racing</Person>
+          <Person 
+            name={this.state.persons[2].name} 
+            age={this.state.persons[2].age} />
+        </div> : null 
+        }
+ 
       </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
