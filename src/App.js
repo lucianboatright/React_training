@@ -5,9 +5,9 @@ import Person from './Person/Person';
 class App extends Component {
   state = {
     persons: [
-      { name: 'Max', age: 28 },
-      { name: 'Manu', age: 29 },
-      { name: 'Stephanie', age: 26 }
+      { key: "1111", name: 'Max', age: 28 },
+      { key: "2222", name: 'Manu', age: 29 },
+      { key: "3333", name: 'Stephanie', age: 26 }
     ],
     otherState: 'some other value',
     showPersons: false
@@ -36,9 +36,12 @@ class App extends Component {
   // }
 
   deletePersonHandeler = (personIndex) => {
-    const persons = this.state.persons;
+    // const persons = this.state.persons.slice();
+    const persons = [...this.state.persons]
     persons.splice(personIndex, 1);
     this.setState({persons: persons});
+    console.log(personIndex)
+    console.log(this.state.showPersons)
   }
 
   togglePersonsHandeler = () => {
@@ -66,20 +69,11 @@ class App extends Component {
           return <Person 
           click={() => this.deletePersonHandeler(index)}
           name={person.name} 
-          age={person.age} />
+          age={person.age} 
+          key={index}/>
         })}
       </div>
-        // {/* <Person 
-        //   name={this.state.persons[0].name} 
-        //   age={this.state.persons[0].age} />
-        // <Person 
-        //   name={this.state.persons[1].name} 
-        //   age={this.state.persons[1].age}
-        //   click={this.switchNameHandler.bind(this, 'Change on line click')}
-        //   changed={this.nameChangedHandler} >My Hobbies: Racing</Person>
-        // <Person 
-        //   name={this.state.persons[2].name} 
-        //   age={this.state.persons[2].age} /> */}
+
       )
     }
 
