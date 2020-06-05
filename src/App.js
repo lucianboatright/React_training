@@ -23,7 +23,6 @@ class App extends Component {
   //     ]
   //   } )
   // }
-
   nameChangedHandler = (event, key ) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.key === key;
@@ -32,14 +31,13 @@ class App extends Component {
     const person = {
       ...this.state.persons[personIndex]
     };
-    // const = person = Object.assign({}, this.state.persons[personIndex])
-
+    // const = person = Object.assign({}, this.state.persons[personIndex]) other option
     person.name = event.target.value;
 
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState( { persons: persons} );
+    this.setState({ persons: persons});
   }
 
   deletePersonHandeler = (personIndex) => {
@@ -65,7 +63,7 @@ class App extends Component {
       padding: '8px',
       boxShadow: '0 2px 3px #ccc',
       cursor: 'pointer'
-    }; // values need to be in quote marks as it is in js
+    }; // values need to be in quote marks as it is in js for 
 
     let persons = null;
 
